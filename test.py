@@ -9,11 +9,11 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 llm = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=GOOGLE_API_KEY)
 
-tweet_prompt = PromptTemplate.from_template("You are a content creator. Write a technical blog about {topic}.")
+prompt = PromptTemplate.from_template("You are a content creator. Write a technical blog about {topic}.")
 
-tweet_chain = LLMChain(llm=llm, prompt=tweet_prompt, verbose=True)
+chain = LLMChain(llm=llm, prompt=prompt, verbose=True)
 
 if __name__=="__main__":
     topic = "vector databases"
-    resp = tweet_chain.invoke({"topic": topic})
+    resp = chain.invoke({"topic": topic})
     print(resp)
